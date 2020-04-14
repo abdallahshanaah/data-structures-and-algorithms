@@ -78,6 +78,10 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 
 const sortNumbersByLength = (arr) => {
   // Solution code here...
+  arr.sort(function(a,b){
+    return `${a}`.length > `${b}`.length
+  })
+  return arr ;
 };
 
 /*-----------------------------------------------------------------------------------------------
@@ -100,6 +104,10 @@ const people = [
 
 const sortPeople = (arr) => {
   // Solution code here...
+  arr.sort(function(a,b){
+    return a.lastName > b.lastName;
+  })
+  return arr ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -114,6 +122,16 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  arr.sort(function (a,b){
+    if ( a.lastName === b.lastName && a.firstName === b.firstName){
+      return a.age > b.age }
+    else if ( a.lastName === b.lastName){
+      return a.firstName > b.firstName;
+    }
+    else {
+      return a.lastName > b.lastName
+    }})
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
