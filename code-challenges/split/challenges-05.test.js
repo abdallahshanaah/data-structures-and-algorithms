@@ -83,6 +83,18 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
+  recipe.ingredients.forEach(item => {
+    let spaceCount = 0;
+    for (let i = 0; i < item.length; i++) {
+      if (item[i] === ' ' && spaceCount === 1) {
+        result.push(item.slice(i + 1, item.length));
+        break;
+      }
+      if (item[i] === ' ') {
+        spaceCount++;
+      }
+    }
+  });
   return result;
 };
 
@@ -97,6 +109,12 @@ You may also use other string or array methods.
 const splitFoods = (recipe) => {
   let result = [];
   // Solution code here...
+  recipe.ingredients.forEach(item => {
+    item = item.split(' ');
+    item = item.slice(2, item.length).join(' ');
+    result.push(item);
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -111,6 +129,9 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 
 const stepActions = (recipe) => {
   let result = [];
+  recipe.steps.forEach(item => {
+    result.push(item.split(' ')[0]);
+  });
   // Solution code here...
   return result;
 };
@@ -130,6 +151,15 @@ For example:
 
 const removeEvenValues = (arr) => {
   // Solution code here...
+  var arr2 = arr.slice();
+  let cout = 0;
+  arr2.forEach((num, i) => {
+    if (num % 2 === 0) {
+      arr.splice(i - cout, 1);
+      cout++;
+    }
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,7 +179,9 @@ removeLastCharacters('Gregor', 9) returns ''
 
 const removeLastCharacters = (str, numberOfCharacters) => {
   // Solution code here...
+  return numberOfCharacters < 0 ? str : str.slice(0, numberOfCharacters * -1);
 };
+
 
 
 /* ------------------------------------------------------------------------------------------------
